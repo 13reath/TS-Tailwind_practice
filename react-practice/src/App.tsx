@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import TodoItem from './components/TodoItem';
 import { dummyData } from './data/todos';
 import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList';
 
 function App() {
     const [todos, setTodos] = useState(dummyData);
@@ -14,6 +14,14 @@ function App() {
     }
 
     function addTodo(title: string) {
+        setTodos((prevTodos) => [
+            {
+                id: prevTodos.length + 1,
+                title,
+                completed: false,
+            },
+            ...prevTodos,
+        ]);
     }
 
     return (
@@ -22,17 +30,11 @@ function App() {
                 Todo
             </h1>
             <div className="max-w-lg mx-auto bg-slate-100 rounded p-5 space-y-6">
-                <TodoForm onSubmit={addTodo}/>
-                <div className="space-y-2">
-                    {todos.map((todo) => (
-                        <p key={todo.id} className="text-lg">
-                            <TodoItem
-                                todo={todo}
-                                onCompletedChange={setTodoCompleted}
-                            />
-                        </p>
-                    ))}
-                </div>
+                <TodoForm onSubmit={addTodo} />
+                <TodoList
+                    todos={todos}
+                    onCompletedChange={setTodoCompleted}
+                />
             </div>
         </main>
     );
