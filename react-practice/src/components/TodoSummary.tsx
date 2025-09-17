@@ -13,9 +13,17 @@ export default function TodoSummary({
 
     return (
         <div className="text-center space-y-2">
-            <p>
+            <p className="text-sm font-medium">
                 {completedTodos.length}/{todos.length} todos completed
             </p>
+            {completedTodos.length > 0 && (
+                <button
+                    onClick={deleteAllcompleted}
+                    className="text-red-500 hover:underline text-sm font-medium"
+                >
+                    Deleted all
+                </button>
+            )}
         </div>
     );
 }
