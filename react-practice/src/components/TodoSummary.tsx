@@ -19,7 +19,7 @@ export default function TodoSummary({
             {completedTodos.length > 0 && (
                 <button
                     onClick={deleteAllcompleted}
-                    className="text-red-500 hover:underline text-sm font-medium"
+                    className="text-red-500 hover:underline text-sm font-medium cursor-pointer"
                 >
                     Deleted all
                 </button>

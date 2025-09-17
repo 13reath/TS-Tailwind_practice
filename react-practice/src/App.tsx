@@ -17,7 +17,7 @@ function App() {
     function addTodo(title: string) {
         setTodos((prevTodos) => [
             {
-                id: prevTodos.length + 1,
+                id: Date.now(),
                 title,
                 completed: false,
             },
@@ -28,6 +28,12 @@ function App() {
     function deleteTodo(id: number) {
         setTodos((prevTodos) =>
             prevTodos.filter((todo) => todo.id !== id)
+        );
+    }
+
+    function deleteAllCompletedTodos() {
+        setTodos((prevTodos) =>
+            prevTodos.filter((todo) => !todo.completed)
         );
     }
 
@@ -46,7 +52,7 @@ function App() {
             </div>
             <TodoSummary
                 todos={todos}
-                deleteAllcompleted={() => {}}
+                deleteAllcompleted={deleteAllCompletedTodos}
             />
         </main>
     );
